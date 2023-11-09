@@ -2,9 +2,24 @@
 
 left to right direction
 
-class Задача {
-    заголовок
-    описание
+class Payment{
+    Информация по кредиту
+}
+
+class Статус {
+    наименование
+}
+
+Задача "0..n" -- "1" Статус
+
+@enduml
+
+@startuml
+
+left to right direction
+
+class User{
+    Информация о пользователе
 }
 
 class Статус {
