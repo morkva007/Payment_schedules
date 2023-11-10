@@ -1,10 +1,11 @@
 import tkinter as tk
 from tkinter import *
-from tkinter import messagebox
 from datetime import datetime, timedelta
 import calendar
 import matplotlib.pyplot as plt
 from tkinter import messagebox
+from tkcalendar import DateEntry
+import tkinter.ttk as ttk
 
 
 def func():
@@ -256,14 +257,13 @@ credit_tf = Entry(
 )
 credit_tf.grid(row=4, column=2)
 
-currency_tf = Entry(
-   frame
-)
+currency_tf = ttk.Combobox(frame, values=['RUB', 'USD', 'EUR'])
 
 currency_tf.grid(row=5, column=2)
 
-date_start_tf = Entry(
-   frame
+date_start_tf = DateEntry(
+   frame,
+   date_pattern="dd.mm.YYYY"
 )
 date_start_tf.grid(row=6, column=2)
 
@@ -278,9 +278,8 @@ procent_tf = Entry(
 )
 procent_tf.grid(row=8, column=2)
 
-repayment_method_tf = Entry(
-   frame
-)
+repayment_method_tf = ttk.Combobox(frame, values=['Аннуитет', 'Дифференцированные платежи', 'В конце срока'])
+
 repayment_method_tf.grid(row=9, column=2)
 
 cal_btn = Button(
@@ -289,6 +288,14 @@ cal_btn = Button(
    command=func
 )
 cal_btn.grid(row=10, column=2)
+
+menu = tk.Menu()
+file_menu = tk.Menu(menu, tearoff=0)
+file_menu.add_command(label="Создать график")
+menu.add_cascade(label="График погашения", menu=file_menu)
+menu.add_command(label="Досрочное погашение")
+
+window.config(menu=menu)
 
 window.mainloop()
 
